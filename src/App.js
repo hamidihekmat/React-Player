@@ -6,11 +6,13 @@ import data from "./util";
 
 function App() {
   const [songs, setSongs] = useState(data());
-  const [currentSong, setCurrentSong] = useState(songs[1]);
+  const [currentSong, setCurrentSong] = useState(songs[0]);
   const forwardHandler = () => {
     const currentIndex = songs.indexOf(currentSong);
-    if (currentIndex < songs.length) {
+    if (currentIndex + 1 < songs.length) {
       setCurrentSong(songs[currentIndex + 1]);
+    } else {
+      setCurrentSong(songs[0]);
     }
   };
   const previousHandler = () => {
