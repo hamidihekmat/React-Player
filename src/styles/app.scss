@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Avenir;
+  src: url("../avenirFont/AvenirNextLTPro-Regular.otf");
+}
+
+body {
+  font-family: Avenir;
+}
+
+h1,
+h2,
+h3 {
+  color: rgb(54, 54, 54);
+}
+
+@import "./song";
+@import "./player";
