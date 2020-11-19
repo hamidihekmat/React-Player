@@ -26,7 +26,7 @@ function Player({ currentSong, forwardHandler, previousHandler }) {
         <p>{fmtMSS(songInfo.currentTime)}</p>
         <input
           min={0}
-          max={songInfo.duration}
+          max={songInfo.duration || 0}
           value={songInfo.currentTime}
           onChange={dragHandler}
           type="range"
@@ -59,6 +59,7 @@ function Player({ currentSong, forwardHandler, previousHandler }) {
           size="2x"
         />
         <audio
+          autoPlay
           onTimeUpdate={timeUpdateHandler}
           ref={audioRef}
           src={currentSong.audio}

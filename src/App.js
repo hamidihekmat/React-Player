@@ -1,11 +1,14 @@
 import { useState } from "react";
+import Nav from "./components/Nav";
+import Library from "./components/Library";
 import Player from "./components/Player";
 import Song from "./components/Song";
 import "./styles/app.scss";
 import data from "./util";
 
 function App() {
-  const [songs, setSongs] = useState(data());
+  const [libraryState, setLibraryState] = useState(false);
+  const [songs] = useState(data());
   const [currentSong, setCurrentSong] = useState(songs[0]);
   const forwardHandler = () => {
     const currentIndex = songs.indexOf(currentSong);
@@ -25,11 +28,17 @@ function App() {
   };
   return (
     <div className="App">
+      <Nav libraryState={libraryState} setLibraryState={setLibraryState} />
       <Song currentSong={currentSong} />
       <Player
         previousHandler={previousHandler}
         forwardHandler={forwardHandler}
         currentSong={currentSong}
+      />
+      <Library
+        libraryState={libraryState}
+        setCurrentSong={setCurrentSong}
+        songs={songs}
       />
     </div>
   );
