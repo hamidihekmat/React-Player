@@ -10,16 +10,15 @@ import {
 import { usePlay } from "../hooks/usePlay";
 import { fmtMSS } from "../utils/formatTime";
 
+// Zustand
+import { useIsPlaying } from "../store/store";
+
 function Player({ currentSong, forwardHandler, previousHandler }) {
+  const isPlaying = useIsPlaying((state) => state.isPlaying);
   const audioRef = useRef(null);
-  const [
-    songInfo,
-    isPlaying,
-    setIsPlaying,
-    playSongHandler,
-    timeUpdateHandler,
-    dragHandler,
-  ] = usePlay(audioRef);
+  const [songInfo, playSongHandler, timeUpdateHandler, dragHandler] = usePlay(
+    audioRef
+  );
   return (
     <div className="player">
       <div className="time-control">
@@ -35,10 +34,7 @@ function Player({ currentSong, forwardHandler, previousHandler }) {
       </div>
       <div className="play-control">
         <FontAwesomeIcon
-          onClick={() => {
-            previousHandler();
-            setIsPlaying(false);
-          }}
+          onClick={previousHandler}
           className="skip-back"
           icon={faAngleLeft}
           size="2x"
@@ -52,10 +48,7 @@ function Player({ currentSong, forwardHandler, previousHandler }) {
         <FontAwesomeIcon
           className="skip-forward"
           icon={faAngleRight}
-          onClick={() => {
-            forwardHandler();
-            setIsPlaying(false);
-          }}
+          onClick={forwardHandler}
           size="2x"
         />
         <audio

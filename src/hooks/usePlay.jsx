@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useIsPlaying } from "../store/store";
 
 export const usePlay = (audioRef) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const isPlaying = useIsPlaying((state) => state.isPlaying);
+  const toggle = useIsPlaying((state) => state.toggle);
+  // const [isPlaying, setIsPlaying] = useState(false);
   const [songInfo, setSongInfo] = useState({
     currentTime: 0,
     duration: 0,
@@ -19,10 +22,10 @@ export const usePlay = (audioRef) => {
   const playSongHandler = () => {
     if (isPlaying) {
       audioRef.current.pause();
-      setIsPlaying(!isPlaying);
+      toggle();
     } else {
       audioRef.current.play();
-      setIsPlaying(!isPlaying);
+      toggle();
     }
   };
 
@@ -35,12 +38,5 @@ export const usePlay = (audioRef) => {
     });
   };
 
-  return [
-    songInfo,
-    isPlaying,
-    setIsPlaying,
-    playSongHandler,
-    timeUpdateHandler,
-    dragHandler,
-  ];
+  return [songInfo, playSongHandler, timeUpdateHandler, dragHandler];
 };
