@@ -1,10 +1,11 @@
 import React from "react";
-
+import { useIsPlaying } from "../store/store";
 function Song({ currentSong }) {
+  const isPlaying = useIsPlaying((state) => state.isPlaying);
   return (
     <div className="song-container">
       <img
-        className="current-song"
+        className={`${isPlaying && "current-song"}`}
         src={currentSong.cover}
         alt={currentSong.name}
       />
