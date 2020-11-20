@@ -1,10 +1,13 @@
 import React from "react";
 import { useCurrentSong } from "../store/store";
+import { useIsPlaying } from "../store/store";
 
 function LibrarySong({ song, setCurrentSong }) {
+  const play = useIsPlaying((state) => state.play);
   const currentSong = useCurrentSong((state) => state.currentSong);
   const songSelectHandler = () => {
     setCurrentSong(song);
+    play();
   };
   return (
     <div
