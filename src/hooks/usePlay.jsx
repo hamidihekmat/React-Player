@@ -4,7 +4,6 @@ import { useIsPlaying } from "../store/store";
 export const usePlay = (audioRef) => {
   const isPlaying = useIsPlaying((state) => state.isPlaying);
   const toggle = useIsPlaying((state) => state.toggle);
-  // const [isPlaying, setIsPlaying] = useState(false);
   const [songInfo, setSongInfo] = useState({
     currentTime: 0,
     duration: 0,
