@@ -17,32 +17,25 @@ function App() {
   // Zustand
   const [libraryState, setLibraryState] = useState(false);
   const forwardHandler = () => {
+    console.log("clicked");
     const currentIndex = songs.indexOf(currentSong);
-    if (currentIndex + 1 < songs.length) {
-      setCurrentSong(songs[currentIndex + 1]);
-      play();
-    } else {
-      setCurrentSong(songs[0]);
-      play();
-    }
+    const index = (currentIndex + 1) % songs.length;
+    setCurrentSong(songs[index]);
+    play();
   };
   const previousHandler = () => {
     const currentIndex = songs.indexOf(currentSong);
-    if (currentIndex === 0) {
-      setCurrentSong(songs[songs.length - 1]);
-      play();
-    } else {
-      setCurrentSong(songs[currentIndex - 1]);
-      play();
-    }
+    const index = (currentIndex - 1) % songs.length;
+    setCurrentSong(songs[index]);
+    play();
   };
 
   useEffect(() => {
-    setSongs(data());
-    const current = data()[0];
-    current.active = true;
-    setCurrentSong(current);
-  }, [setSongs, setCurrentSong]);
+    data().then((result) => {
+      setSongs(result);
+      setCurrentSong(result[0]);
+    });
+  }, [setCurrentSong, setSongs]);
 
   return (
     <div className="App">
