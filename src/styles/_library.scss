@@ -17,6 +17,7 @@
 
 .library-song {
   display: flex;
+  align-items: flex-start;
   padding: 1rem 2rem;
   cursor: pointer;
   transition: all 200ms ease-in;
