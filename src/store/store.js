@@ -11,7 +11,7 @@ export const useCurrentSong = create((set) => ({
 }));
 
 export const useIsPlaying = create((set) => ({
-  isPlaying: false,
+  isPlaying: true,
   play: () => set({ isPlaying: true }),
   pause: () => set({ isPlaying: false }),
   toggle: () => set((state) => ({ isPlaying: !state.isPlaying })),
