@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import Nav from "./components/Nav";
-import Library from "./components/Library";
-import Player from "./components/Player";
-import Song from "./components/Song";
-import "./styles/app.scss";
-import data from "./util";
-import { useSongs, useCurrentSong, useIsPlaying } from "./store/store";
+import { useEffect, useState } from 'react';
+import Nav from './components/Nav';
+import Library from './components/Library';
+import Player from './components/Player';
+import Song from './components/Song';
+import './styles/app.scss';
+import data from './util';
+import { useSongs, useCurrentSong, useIsPlaying } from './store/store';
 
 function App() {
   // Zustand
@@ -17,7 +17,6 @@ function App() {
   // Zustand
   const [libraryState, setLibraryState] = useState(false);
   const forwardHandler = () => {
-    console.log("clicked");
     const currentIndex = songs.indexOf(currentSong);
     const index = (currentIndex + 1) % songs.length;
     setCurrentSong(songs[index]);
