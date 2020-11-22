@@ -1,17 +1,17 @@
-import React, { useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPlay,
   faPause,
   faAngleLeft,
   faAngleRight,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
 
-import { usePlay } from "../hooks/usePlay";
-import { fmtMSS } from "../utils/formatTime";
+import { usePlay } from '../hooks/usePlay';
+import { fmtMSS } from '../utils/formatTime';
 
 // Zustand
-import { useIsPlaying } from "../store/store";
+import { useIsPlaying } from '../store/store';
 
 function Player({ currentSong, forwardHandler, previousHandler }) {
   const isPlaying = useIsPlaying((state) => state.isPlaying);
@@ -53,7 +53,6 @@ function Player({ currentSong, forwardHandler, previousHandler }) {
         />
         <audio
           autoPlay
-          muted
           onTimeUpdate={timeUpdateHandler}
           ref={audioRef}
           src={currentSong.audio}
