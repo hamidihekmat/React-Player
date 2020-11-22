@@ -53,6 +53,7 @@ function Player({ currentSong, forwardHandler, previousHandler }) {
         />
         <audio
           autoPlay
+          muted
           onTimeUpdate={timeUpdateHandler}
           ref={audioRef}
           src={currentSong.audio}
